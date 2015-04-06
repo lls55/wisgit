@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .c9/
 
 public
@@ -8,8 +7,6 @@ client/bower_components
 
 /server/config/local.env.js
 
-=======
->>>>>>> 22572d1da625b57c2d968c33ab8aaead9b16c781
 # Logs
 logs
 *.log
@@ -37,10 +34,7 @@ build/Release
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
-<<<<<<< 
 
 bower_components/
 build/
 dist/
-=======
->>>>>>> 22572d1da625b57c2d968c33ab8aaead9b16c781
