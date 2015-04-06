@@ -1,0 +1,42 @@
+//- Demo.jade is a top level parent view, including an "add button" for
+    a new pet and a lookup/search field.
+    Nested views include a lookup table and an edit form under that view.
+    The toaster container for this feature set is within this parent view.
+    @todo Search is not yet implemented. The user can hit enter with anything
+    in the search field to get a full lookup table. They can currently click
+    the search button to lookup a pet by an id entered into the search field.
+extends ../demoapp.jade
+block container
+  .container
+    .row
+      .col-md-6
+        h3
+          | Pet SPA
+          | 
+          button.btn.btn-success.btn-circle#newpet(ng-click='vm.showEditForm('0')', type='button')
+            span.glyphicon.glyphicon-plus(title='New Pet') 
+          .input-group
+            input.form-control(id='search', type='text', name='search', 
+              ng-model='vm.searchText', value='',
+              wis-focus, wis-enter="vm.search(vm.radioModel)")
+            | 
+            .input-group-btn
+              button.btn.btn-success(type='submit', ng-click="vm.showEditForm('')")
+                span.glyphicon.glyphicon-search
+        div
+          .btn-group(id="searchOptGroup", data-toggle="buttons")
+            label.btn.btn-info.searchOptBtn(ng-model='vm.radioModel', btn-radio="'Id'")
+              span.glyphicon.glyphicon-barcode
+              |  Id
+            | 
+            label.btn.btn-primary.searchOptBtn(ng-model='vm.radioModel', 
+              btn-radio="'Breed'") Breed
+            | 
+            label.btn.btn-primary.searchOptBtn(ng-model='vm.radioModel', 
+              btn-radio="'Name'") Name
+            | 
+            label.btn.btn-primary.searchOptBtn(ng-model='vm.radioModel', 
+              btn-radio="'Household'") Household
+    .row
+      div.col-md-6(ui-view='')
+      //- toaster-container(toaster-options="{'position-class': 'toast-bottom-right'}")
