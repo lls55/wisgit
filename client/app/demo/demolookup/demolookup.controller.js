@@ -32,7 +32,7 @@ angular.module('workspaceApp')
       };
       if (vm.show === true) {
         vm.getPets();
-      };
+      }
       vm.gridOptions = { 
         data: 'vm.Pets',
         enableCellSelection: false,

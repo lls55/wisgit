@@ -3,18 +3,6 @@
 var _ = require('lodash');
 var Pet = require('./Pet.model');
 
-//In process, get list of Pets based on a query
-exports.query = function(req, res) {
-  //the following commented out code gets all pets with householdName = 'Wolthuis'
-  //need to figure out how to code the api and the $resource and call
-  //Pet.find({householdName:'Wolthuis'}, function (err, Pets) {
-  console.dir(req);
-  Pet.find(req.query, function (err, Pets) { 
-    if(err) { return handleError(res, err); }
-    return res.json(200, Pets);
-  });
-};
-
 // Get list of Pets
 exports.index = function(req, res) {
   Pet.find(function (err, Pets) {  
