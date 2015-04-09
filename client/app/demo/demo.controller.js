@@ -22,6 +22,10 @@ angular.module('workspaceApp')
           $state.go('demo.demolookup', {id: vm.searchText});
         } else if (searchCriteria === 'breed') {
           $state.go('demo.demolookup', {breed: vm.searchText});
+        } else if (searchCriteria === 'household') {
+          $state.go('demo.demolookup', {household: vm.searchText});
+        } else if (searchCriteria === 'name') {
+          $state.go('demo.demolookup', {name: vm.searchText});
         }
       };
       vm.showEditForm = function(docId) {

@@ -22,6 +22,9 @@ angular.module('workspaceApp')
               $log.log('in demoedit.js no document id');
               return {};
             } else {
+              // PetService.setQueryParams({householdName:'Wolthuis'});
+              // $log.log('demoedit.js queryParams is now', PetService.queryParams);
+              // console.dir(PetService.queryParams);
               return PetService.read({id: docId}).$promise;
             }
           }

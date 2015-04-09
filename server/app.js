@@ -10,6 +10,14 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var express = require('express');
 var mongoose = require('mongoose');
 var config = require('./config/environment');
+//var morgan = require('morgan');
+//var logger = morgan('combined');
+/*
+var accessLogStream = fs.createWriteStream(__dirname + '/access.log', {flags: 'a'})
+ 
+// setup the logger 
+app.use(morgan('combined', {stream: accessLogStream}))
+*/
 
 // Connect to database
 mongoose.connect(config.mongo.uri, config.mongo.options);

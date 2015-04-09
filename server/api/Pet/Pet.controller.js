@@ -5,7 +5,7 @@ var Pet = require('./Pet.model');
 
 // Get list of Pets
 exports.index = function(req, res) {
-  Pet.find(function (err, Pets) {  
+  Pet.find(req.query, function (err, Pets) {
     if(err) { return handleError(res, err); }
     return res.json(200, Pets);
   });
@@ -23,7 +23,9 @@ exports.show = function(req, res) {
 // Creates a new Pet in the DB.
 exports.create = function(req, res) {
   Pet.create(req.body, function(err, Pet) {
-    if(err) { return handleError(res, err); }
+    if(err) {
+      return handleError(res, err);
+    }
     return res.json(201, Pet);
   });
 };

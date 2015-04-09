@@ -539,7 +539,7 @@ module.exports = function (grunt) {
     setTimeout(function () {
       grunt.log.writeln('Done waiting!');
       //dawn added the next line
-      grunt.log.ok('If all is well, then check things out at https://wis-lls55.c9.io');
+      //grunt.log.ok('If all is well, then check things out at https://wis-lls55.c9.io');
       done();
     }, 1500);
   });
@@ -564,7 +564,7 @@ module.exports = function (grunt) {
         'concurrent:debug'
       ]);
     }
-    
+    grunt.log.ok('message from dawn, about to run task');
     grunt.task.run([
       'clean:server',
       'env:all',

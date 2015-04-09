@@ -14,17 +14,11 @@ angular.module('workspaceApp')
   .factory('PetService', ['$log', '$resource', 'toaster',
     function ($log, $resource, toaster) {
       $log.log('in PetService factory');
-      //return $resource('/api/Pets/:id', {householdName:'@householdName'},
-      return $resource('/api/Pets/:id', {},
-      {
+      return $resource('/api/Pets/:id', {}, {
         'list': {
           method: 'GET', 
           isArray: true
         },
-        // 'query': {
-        //   method: 'GET', 
-        //   isArray: true
-        // },
         'create': {
           method: 'POST'
         },

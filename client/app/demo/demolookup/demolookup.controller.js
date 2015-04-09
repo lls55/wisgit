@@ -17,17 +17,30 @@ angular.module('workspaceApp')
       $log.log(vm.docname, 'entering this function');
       vm.show = $state.is('demo.demolookup');
       //$log.log('vm.show is', vm.show);
+      $log.log($stateParams);
       vm.id = $stateParams.id || '';
       vm.breed = $stateParams.breed || '';
+      vm.name = $stateParams.name || '';
+      vm.householdName = $stateParams.household || '';
+      $log.log('householdName is', vm.householdName, 'name is', vm.name, 'breed is', vm.breed);
       vm.Pets = [];
       vm.showEditForm = function(petId) {
         petId = petId || 'pet1';
         $state.go('demo.demolookup.demoedit', {id:petId});
       };
+      //next thing to test is dealing with promises with the services
       vm.getPets = function() {
         //need to figure out error handling and async design pattern
-        vm.Pets = PetService.list();
-        //vm.Pets = PetService.query({householdName:'Wolthuis'});
+        //and move this to the resolve, or maybe not, only if showing
+        if (vm.householdName !== '') {
+          vm.Pets = PetService.list({"householdName":vm.householdName});
+        } else {
+          vm.Pets = PetService.list();
+        }
+        $log.log('vm.Pets filtered is');
+        $log.log(vm.Pets);
+        //this returns a promise
+        //vm.Pets = PetService.list();
         return;
       };
       if (vm.show === true) {
