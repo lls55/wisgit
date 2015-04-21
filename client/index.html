@@ -19,6 +19,7 @@
       <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
       <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
       <link rel="stylesheet" href="bower_components/angularjs-toaster/toaster.css" />
+      <link rel="stylesheet" href="bower_components/angularjs-toaster/toaster.min.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -30,9 +31,13 @@
       <link rel="stylesheet" href="app/demo/demo.css">
       <link rel="stylesheet" href="app/demo/demolookup/demoedit/demoedit.css">
       <link rel="stylesheet" href="app/demo/demolookup/demolookup.css">
+      <link rel="stylesheet" href="app/formtest/formtest.css">
       <link rel="stylesheet" href="app/main/main.css">
       <link rel="stylesheet" href="app/menuDemo/menuDemo.css">
       <link rel="stylesheet" href="app/menuDemoReports/menuDemoReports.css">
+      <link rel="stylesheet" href="app/menuLifeCycle/menuLifeCycle.css">
+      <link rel="stylesheet" href="app/menuMechanic/menuMechanic.css">
+      <link rel="stylesheet" href="app/menuParts/menuParts.css">
       <link rel="stylesheet" href="components/modal/modal.css">
       <!-- endinjector -->
     <!-- endbuild -->
@@ -73,9 +78,16 @@
       <script src="bower_components/moment/moment.js"></script>
       <script src="bower_components/angular-animate/angular-animate.js"></script>
       <script src="bower_components/angularjs-toaster/toaster.js"></script>
+      <script src="bower_components/angularjs-toaster/toaster.min.js"></script>
+      <script src="bower_components/api-check/dist/apiCheck.js"></script>
+      <script src="bower_components/angular-formly/dist/formly.js"></script>
+      <script src="bower_components/angular-messages/angular-messages.js"></script>
+      <script src="bower_components/angular-aria/angular-aria.js"></script>
       <!-- endbower -->
       <!-- following line added by dawn -->
       <script src="bower_components/angular-ui-grid/ui-grid.js"></script>
+      <script src="bower_components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.js">
+      </script>
     <!-- endbuild -->
 
         <!-- build:js({.tmp,client}) app/app.js -->
@@ -94,13 +106,22 @@
           <script src="app/demo/demolookup/demoedit/demoedit.js"></script>
           <script src="app/demo/demolookup/demolookup.controller.js"></script>
           <script src="app/demo/demolookup/demolookup.js"></script>
+          <script src="app/demo/pet.like.service.js"></script>
           <script src="app/demo/pet.service.js"></script>
+          <script src="app/formtest/formtest.controller.js"></script>
+          <script src="app/formtest/formtest.js"></script>
           <script src="app/main/main.controller.js"></script>
           <script src="app/main/main.js"></script>
           <script src="app/menuDemo/menuDemo.controller.js"></script>
           <script src="app/menuDemo/menuDemo.js"></script>
           <script src="app/menuDemoReports/menuDemoReports.controller.js"></script>
           <script src="app/menuDemoReports/menuDemoReports.js"></script>
+          <script src="app/menuLifeCycle/menuLifeCycle.controller.js"></script>
+          <script src="app/menuLifeCycle/menuLifeCycle.js"></script>
+          <script src="app/menuMechanic/menuMechanic.controller.js"></script>
+          <script src="app/menuMechanic/menuMechanic.js"></script>
+          <script src="app/menuParts/menuParts.controller.js"></script>
+          <script src="app/menuParts/menuParts.js"></script>
           <script src="components/auth/auth.service.js"></script>
           <script src="components/auth/user.service.js"></script>
           <script src="components/common-directives/wisEnter.directive.js"></script>

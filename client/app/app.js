@@ -17,12 +17,20 @@ angular.module('workspaceApp', [
   'ui.grid',
   'ui.grid.selection',
   'ui.grid.resizeColumns',
-  'ui.grid.pagination'
+  'ui.grid.pagination',
+  'ngAria',
+  'ngMessages',
+  'formly', 
+  'formlyBootstrap'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+    //set formly templates if adding , formlyConfigProvider to the list above
+    // formlyConfigProvider.setType({
+    //   name: 'custom',
+    //   templateUrl: 'custom'
+    // });
     $urlRouterProvider
       .otherwise('/');
-
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
   })
@@ -51,7 +59,9 @@ angular.module('workspaceApp', [
       }
     };
   })
-  .run(function ($rootScope, $location, Auth) {
+  
+  .run(function ($rootScope, $location, Auth, formlyConfig, 
+    formlyValidationMessages) {
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
       Auth.isLoggedInAsync(function(loggedIn) {
@@ -60,5 +70,10 @@ angular.module('workspaceApp', [
         }
       });
     });
+    formlyConfig.setWrapper({
+      template: '<formly-transclude></formly-transclude><div class="my-messages" ng-messages="fc.$error" ng-if="options.formControl.$touched"><div class="some-message" ng-message="{{::name}}" ng-repeat="(name, message) in ::options.validation.messages">{{message(fc.$viewValue, fc.$modelValue, this)}}</div></div>',
+      types: ['input', 'checkbox', 'select', 'textarea', 'radio']
+    });
+    formlyValidationMessages.addStringMessage('required', 'This field is required');
   });
 }());

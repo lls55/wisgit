@@ -4,37 +4,6 @@
     demo.demolookup.demoedit state, optionally passing in an id parameter.
 br
 h3 Edit Pet Registrations
-form.form(name='petForm', ng-submit='vm.addOrUpdatePet()', novalidate='')
-  .form-group
-    | 
-    br
-    input.form-control(type='text', name='_id', required='true',
-      ng-model='vm.pet._id', ng-readonly='true', ng-hide='true',
-      placeholder='This field should be hidden, why can you see it?')
-    label Pet type
-    input.form-control(type='text', name='petType', required='true',
-      ng-model='vm.pet.petType', wis-focus, ng-model-options='{debounce: 150}',
-      placeholder='Enter pet type, such as Cat or Dog')
-    label Pet birthdate
-    input.form-control(type='date', name='birthDate' required='false',
-      ng-model='vm.pet.birthDate')
-    label Name of pet
-    input.form-control(type='text', name='name', required='false',
-      ng-model='vm.pet.name', 
-      placeholder='Enter the name of the pet')
-    label Breed
-    input.form-control(type='text', name='breed', required='false',
-      ng-model='vm.pet.breed', 
-      placeholder='Enter the breed of the pet')
-    label Household name
-    input.form-control(type='text', name='householdName', required='false',
-      ng-model='vm.pet.householdName', 
-      placeholder='What is the last name of the household for this pet?')
-    label Instructions
-    textarea.form-control(type='text', name='instructions', 
-      required='false',
-      ng-model='vm.pet.instructions', 
-      placeholder='What are the instructions for this pet?')
-    br
-    input.btn.btn-primary(type='submit', value='Submit')
-
+form(ng-submit='vm.addOrUpdatePet()', novalidate='')
+  formly-form(model='vm.pet', fields='vm.formFields', form='vm.form1')
+    button.btn.btn-primary.submit-button(type='submit', ng-disabled='vm.form1.$invalid') Submit

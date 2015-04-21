@@ -34,9 +34,9 @@ Thing.find({}).remove(function() {
 
 AppMU.find({}).remove(function() {
   AppMU.create({
-    _id: "menuMaster",
+    _id: "menuLifeCycle",
     formerId: "MASTER",
-    menuTitle: "Master Menu",
+    menuTitle: "World Info LifeCycle Menu",
     shortDesc: "MASTER",
     menuItems: [
       {
@@ -263,6 +263,134 @@ AppMU.find({}).remove(function() {
         menuText : "Yard Check Menu",
         shortText : "YARD CHECK MENU",
         source: "MENU"
+      }]
+  });
+  AppMU.create({
+    _id: "menuParts",
+    formerId: "PARTS",
+    menuTitle: "Parts Department Activity Menu",
+    shortDesc: "PARTS",
+    menuItems: [
+      {
+        job: "RO.ENTRY*9",
+        route: "parts2ro",
+        menuText: "Issue Parts to Repair Order",
+        shortText : "ISSUE PARTS",
+        source: "AP"
+      }, {
+        job: "OE.MENU",
+        route: "menuOutsideSales",
+        menuText : "Outside Sales Processing Menu",
+        shortText : "PARTS SALES",
+        source: "MENU"
+      }, {
+        job: "PARTS.TRANSFER",
+        route: "menuParts",
+        menuText : "Parts Department Transfer Menu",
+        shortText : "TRANSFER PARTS",
+        source: "MENU"
+      }, {
+        job: "INV.MAINT*16",
+        route: "menuParts",
+        menuText : "Parts Inquiry Status/Availability",
+        shortText : "STATUS - PART AVAILABILITY",
+        source: "AP"
+      }, {
+        job: "INV.REPORT",
+        route: "menuParts",
+        menuText : "Inventory On Hand",
+        shortText : "AVAILABLE",
+        source: "VERB"
+      }, {
+        job: "PARTS.IN.PROCESS",
+        route: "menuParts",
+        menuText : "R.O.Parts In Process",
+        shortText : "IN PROCESS",
+        source: "VERB"
+      }, {
+        job: "ALT.PART.MAINT",
+        route: "menuParts",
+        menuText : "Supersede and Interchangable Parts",
+        shortText : "ALTERNATE PART INQUIRY",
+        source: "AP"
+      }, {
+        job: "APN.REPORT",
+        route: "menuParts",
+        menuText : "Supercede/Interchange Parts Report",
+        shortText : "INTERCHANGE PARTS REPORT",
+        source: "VERB"
+      }, {
+        job: "VRMS.MAINT.MENU",
+        route: "menuParts",
+        menuText : "VRMS / Parts Maintenance Menu",
+        shortText : "VMRS SELECT",
+        source: "MENU"
+      }, {
+        job: "PARTS.HOUSEKEEPING",
+        route: "menuParts",
+        menuText : "Parts Housekeeping Menu",
+        shortText : "HOUSEKEEPING - PARTS",
+        source: "MENU"
+      }, {
+        job: "KITS",
+        route: "menuParts",
+        menuText : "Part Kit Menu",
+        shortText : "KIT MENU",
+        source: "MENU"
+      }, {
+        job: "PARTS.DUE.REPORT",
+        route: "menuParts",
+        menuText : "Parts Required for Upcoming PM's",
+        shortText : "PM PARTS REQUIRED",
+        source: "VERB"
+      }, {
+        job: "FEES.REPORT",
+        route: "menuParts",
+        menuText : "Free Form Equipment Specs Report",
+        shortText : "FREE FORM SPECS",
+        source: "VERB"
+      }, {
+        job: "STOCKOUT.REPORT",
+        route: "menuParts",
+        menuText : "Inventory Reorder Report",
+        shortText : "REORDER",
+        source: "VERB"
+      }, {
+        job: "PARTS.ON.ORDER",
+        route: "menuParts",
+        menuText : "Parts On Order - P.O. ISSUED",
+        shortText : "PARTS ON ORDER - P.O.",
+        source: "VERB"
+      }, {
+        job: "PO.ENTRY*9",
+        route: "menuParts",
+        menuText : "Receive Parts from Purchase Order",
+        shortText : "RECEIVE PARTS",
+        source: "AP"
+      }, {
+        job: "INV.MAINT*2",
+        route: "menuParts",
+        menuText : "Receive Inventory Parts - No P.O.",
+        shortText : "RECEIPTS - NO P.O.",
+        source: "AP"
+      }, {
+        job: "PART.STATUS",
+        route: "menuParts",
+        menuText : "Part Active & Stock Status by Loc Inq",
+        shortText : "ACTIVE & STOCK STATUS INQUIRY",
+        source: "AP"
+      }, {
+        job: "PARTS.REPORTS",
+        route: "menuParts",
+        menuText : "Parts Reports - Display/Print",
+        shortText : "PARTS REPORT MENU",
+        source: "MENU"
+      }, {
+        job: "INV.MAINT",
+        route: "menuParts",
+        menuText : "Parts Inquiry Menu",
+        shortText : "PARTS INQUIRY MENU",
+        source: "AP"
       }]
   });
   AppMU.create({

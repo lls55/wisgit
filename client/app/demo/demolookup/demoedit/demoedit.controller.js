@@ -9,14 +9,21 @@
  * functions, that are not in the view to local variables. Also, we have all
  * form work to address, including local and async validation, formatters, 
  * parsers, and messages including toaster and individual field messages.
+ * 
+ * Current issues -- 2 forms here, one is html-based, the second is 
+ * based on javascript using angular-formly. That one has at least these issues:
+ * messages are not showing, such as for required fields, and the workflow
+ * for error messages is not in place. The id shows -- not sure how to hide
+ * a field. Tried hidden, hide, and other things, but so far it still shows.
+ * 
  */
 (function() {
 'use strict';
 angular.module('workspaceApp')
   .controller('DemoeditCtrl', ['$scope', '$http', '$state', '$log', 
-  '$stateParams', 'pet', 'PetService', 'CPetService', 'toaster',
+  '$stateParams', 'pet', 'PetService', 'CPetService', 'toaster', 'formlyVersion',
     function ($scope, $http, $state, $log, $stateParams, pet,
-      PetService, CPetService, toaster) {
+      PetService, CPetService, toaster, formlyVersion) {
       var vm = this;
       /**
        * logging the vm.docname is for debugging purposes and 
@@ -25,7 +32,7 @@ angular.module('workspaceApp')
       vm.docname = 'demoedit.controller';
       $log.log(vm.docname, 'entering this function');
       //do not remove these commented out lines unless you have this memorized
-      //or elsewhere
+      //or documented elsewhere where you can find it
       //$log.log(vm.docname, 'entering this function', $state.current.name,  
       //JSON.stringify($stateParams), $state.$current.url.source);
       /**
@@ -55,15 +62,9 @@ angular.module('workspaceApp')
         });
         $state.go('demo');
       }
-      $log.log('we have a pet record with id', pet._id);
-      $log.log('about to filter the birthDate for', pet.birthDate);
       if (pet.birthDate) {
         pet.birthDate = new Date(pet.birthDate);
-      } 
-      //else {
-        //might not make sense to default to today's date
-        //pet.birthDate = new Date();
-      //}
+      }
       $log.log('birthDate is now', pet.birthDate);
       vm.pet = pet;
       /**
@@ -124,20 +125,75 @@ angular.module('workspaceApp')
         });
         $state.go('demo');
       };
-      
-          //     $http.post('/api/Pets', vm.pet)
-          // .success(function() {
-          //   toaster.pop('success', 'We just registered a pet with id ' + vm.pet._id);
-          //   vm.pet = {};
-          // })
-          // .error(function(error) {
-          //   toaster.pop('info','We could not register a pet with id ' + vm.pet._id,
-          //     'We will need to update this pet instead', error);
-          //   //if a pet with this id cannot be added, it likely already exists
-          //   //vm.updatePet();
-          // });
-      
-      
+      /*
+        The form for this state
+      */
+      //not sure what these options are
+      vm.options = {};
+      vm.formFields = [
+      {
+        key: '_id',
+        template: '<input ng-model="model[options.key]" ng-hide="true" />'
+      },
+      {
+        key: 'petType',
+        type: 'input',
+        templateOptions: {
+          required: true,
+          label: 'Pet type',
+          focus: true,
+          debounce: 150,
+          placeholder: 'Enter pet type, such as Cat or Dog'
+        }
+      },
+      {
+        key: 'birthDate',
+        type: 'input',
+        templateOptions: {
+          type: 'date',
+          required: false,
+          label: 'Pet birthdate',
+          placeholder: 'Enter pet type, such as Cat or Dog'
+        }
+      },
+      {
+        key: 'name',
+        type: 'input',
+        templateOptions: {
+          required: true,
+          label: 'Name of pet',
+          placeholder: 'Enter the name of the pet'
+        }
+      },
+      {
+        key: 'breed',
+        type: 'input',
+        templateOptions: {
+          required: false,
+          label: 'Breed',
+          placeholder: 'Enter the breed of the pet'
+        }
+      },
+      {
+        key: 'householdName',
+        type: 'input',
+        templateOptions: {
+          required: false,
+          label: 'Household name',
+          placeholder: 'Enter the last name of the household for this pet'
+        }
+      },
+      {
+        key: 'instructions',
+        type: 'textarea',
+        templateOptions: {
+          required: false,
+          label: 'Instructions',
+          placeholder: 'Are there instructions related to this pet?',
+          rows: 10
+        }
+      }
+      ];
       $log.log(vm.docname, 'leaving this function with vm.pet', JSON.stringify(vm.pet));
     }]);
 }());

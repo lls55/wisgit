@@ -11,6 +11,28 @@ exports.index = function(req, res) {
   });
 };
 
+/** 
+  testing a find verb for the API
+  not yet using this, but testing out a "like", need to design the API
+  In this case, the following query, for example
+  http://wis-lls55.c9.io/api/Pets/find/Rug
+  would produce all Pets with "Rug" somewhere in the name field
+  but notice this API does not permit specifying which field
+  it just assumes you want to query the name. There are some best
+  practices for this, but many differing opinions on how to design
+  most sites currently use ?name=this&household=that but more contemporary
+  designs use the url and not query params
+*/
+
+exports.findLike = function(req, res) {
+  var regex = new RegExp(req.params.like, "i"),
+    query = { name: {$regex: regex} };
+  Pet.find(query, function(err, Pets) {
+    if(err) { return handleError(res, err); }
+    return res.json(200, Pets);
+  });
+};
+
 // Get a single Pet
 exports.show = function(req, res) {
   Pet.findById(req.params.id, function (err, Pet) {

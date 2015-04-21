@@ -1,0 +1,27 @@
+//- Demo.jade is a top level parent view, including an "add button" for
+    a new pet and a lookup/search field.
+    Nested views include a lookup table and an edit form under that view.
+    The toaster container for this feature set is within this parent view.
+    @todo Search is not yet implemented. The user can hit enter with anything
+    in the search field to get a full lookup table. They can currently click
+    the search button to lookup a pet by an id entered into the search field.
+extends ../demoapp.jade
+block container
+  .container
+    .row
+      .col-md-6
+        h3
+          | A Formly Form
+          | 
+          button.btn.btn-success.btn-circle#newpet(ng-click="vm.showEditForm('0')", type='button')
+            span.glyphicon.glyphicon-plus(title='New Something') 
+          form(ng-submit='vm.handleSubmit()', novalidate='')
+            formly-form(model='vm.formData', fields='vm.formFields')
+              button.btn.btn-primary.submit-button(type='submit') Submit
+          h3 The model is below
+          |   {{vm.formData | json}}
+
+
+
+
+

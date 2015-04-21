@@ -11,7 +11,8 @@
 angular.module('workspaceApp')
   .controller('DemolookupCtrl', 
     ['$scope', '$http', '$state', '$log', '$stateParams', 'PetService',
-    function ($scope, $http, $state, $log, $stateParams, PetService) {
+    'PetLikeService',
+    function ($scope, $http, $state, $log, $stateParams, PetService, PetLikeService) {
       var vm = this;
       vm.docname = 'demolookup.controller';
       $log.log(vm.docname, 'entering this function');
@@ -19,10 +20,13 @@ angular.module('workspaceApp')
       //$log.log('vm.show is', vm.show);
       $log.log($stateParams);
       vm.id = $stateParams.id || '';
-      vm.breed = $stateParams.breed || '';
-      vm.name = $stateParams.name || '';
-      vm.householdName = $stateParams.household || '';
-      $log.log('householdName is', vm.householdName, 'name is', vm.name, 'breed is', vm.breed);
+      var breed = $stateParams.breed || '';
+      var name = $stateParams.name || '';
+      var householdName = $stateParams.household || '';
+      $stateParams.breed = '';
+      $stateParams.name = '';
+      $stateParams.household = '';
+      $log.log('householdName is', householdName, 'name is', name, 'breed is', breed);
       vm.Pets = [];
       vm.showEditForm = function(petId) {
         petId = petId || 'pet1';
@@ -32,8 +36,13 @@ angular.module('workspaceApp')
       vm.getPets = function() {
         //need to figure out error handling and async design pattern
         //and move this to the resolve, or maybe not, only if showing
-        if (vm.householdName !== '') {
-          vm.Pets = PetService.list({"householdName":vm.householdName});
+        //the following code is not at all ready for primetime
+        if (householdName !== '') {
+          vm.Pets = PetService.list({"householdName":householdName});
+        } else if (breed !== '') {
+          vm.Pets = PetService.list({"breed":breed});
+        } else if (name !== '') {
+          vm.Pets = PetLikeService.findLike({"like":name});          
         } else {
           vm.Pets = PetService.list();
         }
